@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple CRUD catalogue for technology products.">
+  <title>TechShelf | Product Showcase</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand"><span class="brand-mark">T</span><span>TechShelf</span></div>
+    <span class="header-tag">ICT251 · Activity 4</span>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">TECH PRODUCT SHOWCASE</p>
+      <h1>Your tech, <span>one shelf.</span></h1>
+      <p class="hero-copy">Manage a catalogue of gadgets, accessories and everyday technology.</p>
+      <div class="hero-stats">
+        <div class="stat"><strong id="total-count">—</strong><span>Products</span></div>
+        <div class="stat"><strong id="category-count">—</strong><span>Categories</span></div>
+        <div class="stat"><strong id="stock-count">—</strong><span>Units in stock</span></div>
+      </div>
+    </section>
+
+    <div id="notice" class="notice" role="status" aria-live="polite"></div>
+
+    <section class="workspace">
+      <section class="panel form-panel">
+        <div class="section-heading">
+          <div><p class="eyebrow">CATALOGUE CONTROL</p><h2 id="form-title">Add a product</h2></div>
+          <span class="heading-icon">＋</span>
+        </div>
+        <form id="product-form">
+          <input type="hidden" id="product-id">
+          <label for="product_name">Product name *</label>
+          <input id="product_name" name="product_name" maxlength="150" placeholder="e.g. Galaxy S24" required>
+          <div class="form-row">
+            <div><label for="brand">Brand *</label><input id="brand" name="brand" maxlength="100" placeholder="Samsung" required></div>
+            <div><label for="category">Category *</label>
+              <select id="category" name="category" required>
+                <option value="">Choose category</option>
+                <option>Smartphone</option><option>Laptop</option><option>Headphones</option>
+                <option>Tablet</option><option>Accessories</option><option>Storage</option>
+                <option>Gaming</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div><label for="price">Price (ZMW) *</label><input id="price" name="price" type="number" min="0" step="0.01" placeholder="8999.00" required></div>
+            <div><label for="stock_quantity">Stock quantity *</label><input id="stock_quantity" name="stock_quantity" type="number" min="0" step="1" placeholder="10" required></div>
+          </div>
+          <label for="description">Description</label>
+          <textarea id="description" name="description" rows="3" maxlength="500" placeholder="A short description of the product"></textarea>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit" id="submit-button">＋ Save product</button>
+            <button class="btn btn-quiet hidden" type="button" id="cancel-edit">Cancel</button>
+          </div>
+          <p class="form-hint">* Required fields. Data is saved in the SQLite database.</p>
+        </form>
+      </section>
+
+      <section class="panel catalogue-panel">
+        <div class="section-heading catalogue-heading">
+          <div><p class="eyebrow">YOUR INVENTORY</p><h2>Product catalogue</h2></div>
+          <button class="btn btn-quiet" id="refresh-button" type="button">↻ Refresh</button>
+        </div>
+        <div class="toolbar">
+          <input id="search" type="search" placeholder="Search products, brands or categories…" aria-label="Search products">
+          <select id="category-filter" aria-label="Filter by category"><option value="">All categories</option></select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr></thead>
+            <tbody id="product-list"><tr><td colspan="5" class="empty">Loading products…</td></tr></tbody>
+          </table>
+        </div>
+        <p class="table-foot" id="table-foot">Connecting to API…</p>
+      </section>
+    </section>
+    <footer><span>TechShelf · ICT251 Activity 4</span><span>Node.js · Express · SQLite</span></footer>
+  </main>
+</body>
+</html>

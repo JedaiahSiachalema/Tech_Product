@@ -1,0 +1,4 @@
+node_modules/
+.env
+backend/products.db
+.DS_Store

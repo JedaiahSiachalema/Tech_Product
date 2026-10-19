@@ -1,0 +1,84 @@
+{
+  "info": {
+    "name": "ICT251 Activity 4 - Tech Product Showcase",
+    "description": "Postman requests for all five required products CRUD endpoints. Start the server at http://localhost:3000 first.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "productId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "GET - List all products",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/products"
+      }
+    },
+    {
+      "name": "GET - Get one product",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/products/{{productId}}"
+      }
+    },
+    {
+      "name": "POST - Create product",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_name\": \"Test Gaming Mouse\",\n  \"brand\": \"DemoTech\",\n  \"category\": \"Accessories\",\n  \"price\": 499.99,\n  \"stock_quantity\": 10,\n  \"description\": \"Created during Postman testing\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/api/products"
+      }
+    },
+    {
+      "name": "PUT - Update product",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"product_name\": \"Updated Gaming Mouse\",\n  \"brand\": \"DemoTech\",\n  \"category\": \"Accessories\",\n  \"price\": 549.99,\n  \"stock_quantity\": 8,\n  \"description\": \"Updated during Postman testing\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{baseUrl}}/api/products/{{productId}}"
+      }
+    },
+    {
+      "name": "DELETE - Delete product",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/products/{{productId}}"
+      }
+    }
+  ]
+}
